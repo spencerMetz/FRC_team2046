@@ -76,17 +76,30 @@ public abstract class ShooterSpeedController {
 			}
 		};
 	}
-
+	
+	/**
+	 * Sets the controller task execution rate.
+	 * @param period the intervol (in milliseconds) between task execution rate
+	 */
 	public void setControllerPeriod(int period) {
 		this.period = period;
 	}
-
+	
+	/**
+	 * Typically used for debugging the shooter.
+	 * @param kI PID gain setting - 0.0 is default, 1.0 = 1.0 gain, etc.
+	 */
 	public void setGain(double kI) {
 		synchronized(sync) {
 			this.gain = kI;
 		}
 	}
 	
+	/**
+	 * Sets the target speed for the Shooter's speed.
+	 * @param target General target speed for the shooter.
+	 * @param tolerance A lee-way for corrections, i.e. 3890RPM / 4000RPM = Could be a 200RPM tolerance
+	 */
 	public void setTarget(double target, double tolerance) {
 		synchronized (sync) {
 			this.target = target;
@@ -95,14 +108,25 @@ public abstract class ShooterSpeedController {
 		setEnable(true);
 	}
 	
+	/**
+	 * Stops the Shooter from spinning up.
+	 */
 	public void cancel() {
 		setEnable(false);
 	}
-
+	
+	/**
+	 * Determines how close the shooter is to the target speed.
+	 * @return True = the shooter is +/- the tolerance, False = the shooter is not up-to-speed.
+	 */
 	public boolean isOnTarget() {
 		return Math.abs(target - getProcessValue()) < tolerance;
 	}
 
+	/**
+	 * Enables the Shooter's speed controller
+	 * @param enable True starts up the speed controller (runs the motor up-to-speed using a taskschedule), false stops the speed controller (kills the motor speed and the timer).
+	 */
 	public void setEnable(boolean enable) {
 		if (enable && !this.enable) {
 			timer.scheduleAtFixedRate(task, 0, period);
