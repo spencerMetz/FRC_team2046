@@ -1,15 +1,9 @@
-# FRC_team2046
-FRC team 2046 2016 code
+#FRC_team2046
+FRC team 2046 Bear Metal 2016 Robot Java Code
 
+##Things to do:
+1. Get this code setup for simulation with Autodesk Synthesis
+2. Reduce the amount of RAM this code uses - if possible :)
+3. Make the code look nice
 
-I have no clue why its not showing files. Working on that.
-
-update: 
-Found how to do it.
-
-Rules:
-No theft.                           
-No doing anything illegal with code.                
-Miss use code and Nick will hunt you.
-
-feel free to comment.
+Code was provided as opensource by github.com/spartanash1
